@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Chandrashekhar Goswami | Professor, CSE</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy2: #112240;
+    --teal: #1a8c7a;
+    --teal-light: #22b59a;
+    --gold: #c9963a;
+    --gold-light: #f0b84a;
+    --cream: #f8f4ee;
+    --cream2: #ede8df;
+    --text: #1a1a2e;
+    --text-muted: #556070;
+    --white: #ffffff;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(10,22,40,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,150,58,0.2);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold-light);
+    font-size: 1.15rem;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+
+  /* ── HERO ── */
+  #home {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex; align-items: center;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg-pattern {
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 50%, rgba(26,140,122,0.12) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(201,150,58,0.08) 0%, transparent 40%),
+      linear-gradient(135deg, rgba(17,34,64,0.8) 0%, rgba(10,22,40,1) 100%);
+  }
+  .hero-grid-lines {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 1200px; margin: 0 auto; padding: 6rem 2rem 4rem;
+    display: grid; grid-template-columns: 1fr 380px; gap: 5rem; align-items: center;
+  }
+  .hero-label {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--teal-light); margin-bottom: 1.2rem;
+    border-left: 2px solid var(--teal-light); padding-left: 10px;
+  }
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 5vw, 4rem);
+    color: var(--white); line-height: 1.15;
+    margin-bottom: 0.5rem;
+  }
+  .hero-name span { color: var(--gold-light); font-style: italic; }
+  .hero-title {
+    font-size: 1.05rem; color: rgba(255,255,255,0.65);
+    font-weight: 300; margin-bottom: 1.8rem; letter-spacing: 0.3px;
+  }
+  .hero-tagline {
+    font-size: 1rem; color: rgba(255,255,255,0.5);
+    font-style: italic; border-left: 2px solid var(--gold);
+    padding-left: 1rem; margin-bottom: 2.5rem; line-height: 1.6;
+    max-width: 500px;
+  }
+  .hero-stats {
+    display: flex; gap: 2.5rem; margin-bottom: 2.5rem;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; color: var(--gold-light); font-weight: 700; display: block;
+  }
+  .stat-label { font-size: 0.72rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 1px; }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--teal); color: var(--white);
+    padding: 0.75rem 1.8rem; border-radius: 4px;
+    text-decoration: none; font-weight: 600; font-size: 0.9rem;
+    letter-spacing: 0.3px; transition: background 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--teal-light); transform: translateY(-2px); }
+  .btn-outline {
+    border: 1.5px solid rgba(201,150,58,0.6); color: var(--gold-light);
+    padding: 0.75rem 1.8rem; border-radius: 4px;
+    text-decoration: none; font-weight: 500; font-size: 0.9rem;
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--gold-light); background: rgba(201,150,58,0.08); transform: translateY(-2px); }
+
+  .hero-photo-wrapper {
+    display: flex; flex-direction: column; align-items: center; gap: 1.5rem;
+  }
+  .hero-photo-frame {
+    width: 260px; height: 260px; border-radius: 50%;
+    border: 3px solid var(--gold);
+    padding: 5px;
+    background: linear-gradient(135deg, var(--teal) 0%, var(--navy2) 100%);
+    box-shadow: 0 0 60px rgba(26,140,122,0.3), 0 0 100px rgba(10,22,40,0.5);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .hero-photo-frame::before {
+    content: '';
+    position: absolute; inset: -12px; border-radius: 50%;
+    border: 1px solid rgba(201,150,58,0.2);
+  }
+  .hero-avatar {
+    width: 250px; height: 250px; border-radius: 50%;
+    object-fit: cover; display: block;
+  }
+  .hero-avatar-placeholder {
+    width: 250px; height: 250px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal) 0%, var(--navy2) 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem; color: rgba(255,255,255,0.3);
+  }
+  .hero-contact-chips {
+    display: flex; flex-direction: column; gap: 0.5rem; width: 100%;
+  }
+  .chip {
+    display: flex; align-items: center; gap: 0.6rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 6px; padding: 0.5rem 0.9rem;
+    color: rgba(255,255,255,0.6); font-size: 0.8rem;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .chip:hover { background: rgba(255,255,255,0.1); color: var(--white); }
+  .chip-icon { font-size: 0.95rem; }
+
+  /* ── SECTION BASE ── */
+  section { padding: 5rem 2rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-header { margin-bottom: 3rem; }
+  .section-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 0.6rem; display: block;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    color: var(--navy); line-height: 1.2;
+  }
+  .section-title .accent { color: var(--teal); }
+  .divider {
+    width: 60px; height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--teal));
+    border-radius: 2px; margin-top: 1rem;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--white); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .about-text p { color: var(--text-muted); margin-bottom: 1rem; font-size: 0.98rem; }
+  .about-highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+  .highlight-card {
+    background: var(--cream); border-radius: 8px; padding: 1.2rem;
+    border-left: 3px solid var(--teal);
+  }
+  .highlight-card strong { display: block; color: var(--navy); font-size: 0.85rem; margin-bottom: 0.3rem; }
+  .highlight-card span { color: var(--text-muted); font-size: 0.82rem; }
+  .research-interests h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; color: var(--navy); margin-bottom: 1.2rem;
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .tag {
+    background: var(--navy); color: rgba(255,255,255,0.85);
+    padding: 0.35rem 0.9rem; border-radius: 20px;
+    font-size: 0.78rem; letter-spacing: 0.3px;
+  }
+  .tag.teal { background: var(--teal); }
+  .tag.gold { background: var(--gold); color: var(--white); }
+  .ids-grid { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.5rem; }
+  .id-link {
+    display: flex; align-items: center; gap: 0.7rem;
+    color: var(--teal); font-size: 0.82rem; text-decoration: none;
+    font-family: 'DM Mono', monospace;
+    transition: color 0.2s;
+  }
+  .id-link:hover { color: var(--navy); }
+
+  /* ── EDUCATION ── */
+  #education { background: var(--cream); }
+  .edu-timeline { position: relative; padding-left: 2rem; }
+  .edu-timeline::before {
+    content: ''; position: absolute; left: 8px; top: 0; bottom: 0;
+    width: 2px; background: linear-gradient(to bottom, var(--teal), var(--gold));
+  }
+  .edu-item { position: relative; margin-bottom: 2.2rem; }
+  .edu-dot {
+    position: absolute; left: -2rem; top: 6px;
+    width: 16px; height: 16px; border-radius: 50%;
+    border: 2px solid var(--teal); background: var(--cream);
+    margin-left: 1px;
+  }
+  .edu-dot.gold { border-color: var(--gold); }
+  .edu-degree {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; color: var(--navy); font-weight: 700;
+  }
+  .edu-institution { color: var(--teal); font-size: 0.9rem; font-weight: 600; margin: 0.2rem 0; }
+  .edu-year { font-family: 'DM Mono', monospace; font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.3rem; }
+  .edu-thesis { color: var(--text-muted); font-size: 0.85rem; font-style: italic; }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--navy); }
+  #experience .section-title { color: var(--white); }
+  #experience .section-tag { color: var(--teal-light); }
+  .exp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+  .exp-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px; padding: 1.5rem;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .exp-card:hover { transform: translateY(-4px); border-color: rgba(26,140,122,0.4); }
+  .exp-card.current { border-color: var(--teal); }
+  .exp-badge {
+    display: inline-block;
+    font-size: 0.7rem; padding: 0.2rem 0.6rem; border-radius: 20px;
+    background: var(--teal); color: var(--white);
+    font-weight: 600; letter-spacing: 0.5px; margin-bottom: 0.8rem;
+  }
+  .exp-badge.past { background: rgba(255,255,255,0.1); }
+  .exp-role { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--white); font-weight: 700; }
+  .exp-dept { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin: 0.2rem 0; }
+  .exp-org { font-size: 0.9rem; color: var(--gold-light); font-weight: 600; margin-bottom: 0.5rem; }
+  .exp-tenure { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: rgba(255,255,255,0.35); }
+
+  /* ── PUBLICATIONS ── */
+  #publications { background: var(--cream); }
+  .pub-tabs { display: flex; gap: 0.5rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+  .pub-tab {
+    padding: 0.5rem 1.2rem; border-radius: 4px; border: 1.5px solid var(--cream2);
+    background: var(--white); cursor: pointer; font-size: 0.85rem; font-weight: 500;
+    color: var(--text-muted); transition: all 0.2s;
+  }
+  .pub-tab.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
+  .pub-list { display: none; }
+  .pub-list.active { display: block; }
+  .pub-item {
+    background: var(--white); border-radius: 8px; padding: 1.3rem 1.5rem;
+    margin-bottom: 1rem; border-left: 3px solid transparent;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .pub-item:hover { border-left-color: var(--teal); box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+  .pub-num { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--teal); margin-bottom: 0.4rem; }
+  .pub-title { font-weight: 600; color: var(--navy); font-size: 0.92rem; margin-bottom: 0.4rem; line-height: 1.5; }
+  .pub-meta { font-size: 0.8rem; color: var(--text-muted); }
+  .pub-badge {
+    display: inline-block; font-size: 0.68rem; padding: 0.15rem 0.5rem;
+    border-radius: 10px; margin-left: 0.5rem; font-weight: 600; vertical-align: middle;
+  }
+  .badge-scopus { background: #e8f4fd; color: #0066cc; }
+  .badge-scie { background: #fff3cd; color: #856404; }
+  .badge-wos { background: #d4edda; color: #155724; }
+
+  /* ── NOTES / RESOURCES ── */
+  #notes { background: var(--navy); }
+  #notes .section-title { color: var(--white); }
+  #notes .section-tag { color: var(--teal-light); }
+  #notes .notes-intro { color: rgba(255,255,255,0.5); margin-bottom: 2.5rem; font-size: 0.95rem; }
+
+  /* Subject group container */
+  .subject-group {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+  .subject-group-header {
+    display: flex; align-items: center; gap: 1.2rem;
+    padding: 1.4rem 1.8rem;
+    background: linear-gradient(135deg, rgba(26,140,122,0.18) 0%, rgba(201,150,58,0.08) 100%);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .subject-group-icon {
+    width: 52px; height: 52px; border-radius: 12px; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--teal), var(--navy2));
+    border: 1px solid rgba(26,140,122,0.5);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+    box-shadow: 0 4px 20px rgba(26,140,122,0.3);
+  }
+  .subject-group-info { flex: 1; }
+  .subject-group-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--teal-light); margin-bottom: 0.3rem;
+  }
+  .subject-group-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem; color: var(--white); font-weight: 700; line-height: 1.3;
+  }
+  .subject-group-count {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem; color: var(--gold-light);
+    background: rgba(201,150,58,0.12);
+    border: 1px solid rgba(201,150,58,0.25);
+    border-radius: 20px; padding: 0.3rem 0.9rem;
+    white-space: nowrap; flex-shrink: 0;
+  }
+
+  /* Notes grid inside subject group */
+  .notes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1px;
+    background: rgba(255,255,255,0.05);
+    padding: 1.4rem;
+    gap: 1.2rem;
+  }
+  .note-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px; padding: 1.4rem;
+    display: flex; flex-direction: column;
+    align-items: flex-start; gap: 0.7rem;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s, background 0.2s;
+    text-decoration: none; position: relative; overflow: hidden;
+  }
+  .note-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--teal), var(--gold));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .note-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    border-color: rgba(26,140,122,0.35);
+    background: rgba(255,255,255,0.07);
+  }
+  .note-card:hover::before { transform: scaleX(1); }
+  .note-icon {
+    width: 42px; height: 42px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--teal) 0%, var(--navy2) 100%);
+    border: 1px solid rgba(26,140,122,0.4);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+  }
+  .note-unit-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--gold-light);
+    background: rgba(201,150,58,0.1);
+    border: 1px solid rgba(201,150,58,0.2);
+    border-radius: 4px; padding: 0.15rem 0.5rem;
+  }
+  .note-subject { font-weight: 700; color: var(--white); font-size: 0.9rem; line-height: 1.4; }
+  .note-desc { color: rgba(255,255,255,0.45); font-size: 0.78rem; line-height: 1.5; flex: 1; }
+  .note-link {
+    color: var(--teal-light); font-size: 0.78rem; font-weight: 600;
+    display: flex; align-items: center; gap: 0.4rem;
+    margin-top: auto;
+  }
+  .notes-placeholder {
+    background: rgba(255,255,255,0.03); border: 2px dashed rgba(255,255,255,0.1);
+    border-radius: 10px; padding: 3rem; text-align: center; color: rgba(255,255,255,0.3);
+    font-size: 0.9rem;
+  }
+  .notes-placeholder strong { display: block; color: rgba(255,255,255,0.6); font-size: 1rem; margin-bottom: 0.5rem; }
+
+  /* ── PATENTS ── */
+  #patents { background: var(--cream); }
+  .patents-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem; }
+  .patent-card {
+    background: var(--white); border-radius: 8px; padding: 1.4rem;
+    border-top: 3px solid var(--gold);
+  }
+  .patent-title { font-weight: 700; color: var(--navy); font-size: 0.92rem; margin-bottom: 0.4rem; }
+  .patent-meta { color: var(--text-muted); font-size: 0.8rem; }
+
+  /* ── BOOKS ── */
+  #books { background: var(--navy); }
+  #books .section-title { color: var(--white); }
+  #books .section-tag { color: var(--teal-light); }
+  .books-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+  .book-card {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px; padding: 1.6rem; display: flex; gap: 1.2rem;
+  }
+  .book-spine {
+    min-width: 44px; height: 90px; border-radius: 4px;
+    background: linear-gradient(to bottom, var(--gold), var(--teal));
+    display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
+  }
+  .book-info { flex: 1; }
+  .book-type { font-size: 0.7rem; color: var(--teal-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem; }
+  .book-title { font-family: 'Playfair Display', serif; font-size: 0.95rem; color: var(--white); margin-bottom: 0.4rem; font-style: italic; }
+  .book-meta { font-size: 0.78rem; color: rgba(255,255,255,0.45); }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--white); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .contact-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; color: var(--navy); margin-bottom: 1.5rem;
+  }
+  .contact-item { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.2rem; }
+  .contact-icon {
+    width: 40px; height: 40px; border-radius: 8px;
+    background: var(--navy); display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+  }
+  .contact-detail strong { display: block; font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 0.2rem; }
+  .contact-detail a { color: var(--teal); text-decoration: none; font-size: 0.9rem; }
+  .contact-detail span { color: var(--text); font-size: 0.9rem; }
+  .scholar-links h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; color: var(--navy); margin-bottom: 1.5rem;
+  }
+  .scholar-card {
+    background: var(--cream); border-radius: 8px; padding: 1.2rem;
+    display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;
+    text-decoration: none; transition: transform 0.2s;
+  }
+  .scholar-card:hover { transform: translateX(4px); }
+  .scholar-logo { width: 40px; height: 40px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+  .scholar-card span { font-weight: 600; color: var(--navy); font-size: 0.9rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy); color: rgba(255,255,255,0.4);
+    text-align: center; padding: 2rem; font-size: 0.82rem;
+  }
+  footer strong { color: rgba(255,255,255,0.7); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-left > * { animation: fadeUp 0.7s ease both; }
+  .hero-left > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-left > *:nth-child(2) { animation-delay: 0.2s; }
+  .hero-left > *:nth-child(3) { animation-delay: 0.3s; }
+  .hero-left > *:nth-child(4) { animation-delay: 0.4s; }
+  .hero-left > *:nth-child(5) { animation-delay: 0.5s; }
+  .hero-left > *:nth-child(6) { animation-delay: 0.6s; }
+  .hero-photo-wrapper { animation: fadeUp 0.9s 0.3s ease both; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero-content { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
+    .hero-photo-wrapper { order: -1; align-items: center; }
+    .hero-stats { justify-content: center; }
+    .hero-btns { justify-content: center; }
+    .hero-tagline { margin: 0 auto 2rem; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-highlights { grid-template-columns: 1fr; }
+    .hero-label { margin: 0 auto 1.2rem; display: block; width: fit-content; }
+  }
+  @media (max-width: 768px) {
+    .subject-group-header { flex-wrap: wrap; gap: 1rem; }
+    .subject-group-count { order: -1; }
+    .notes-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--navy); padding: 1.5rem 2rem; gap: 1rem; }
+    .nav-links.open { display: flex; }
+    .hamburger { display: flex; }
+    .hero-photo-frame, .hero-avatar, .hero-avatar-placeholder { width: 200px; height: 200px; }
+    .hero-photo-frame { width: 210px; height: 210px; }
+    .notes-grid { grid-template-columns: 1fr; }
+    .subject-group-name { font-size: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#home">Dr. C. Goswami</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#notes">Notes</a></li>
+    <li><a href="#patents">Patents</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-label">Professor · Computer Science & Engineering</div>
+      <h1 class="hero-name">Dr. Chandrashekhar<br><span>Goswami</span></h1>
+      <p class="hero-title">School of Computer Science & Applications<br>D Y Patil International University, Akurdi, Pune</p>
+      <p class="hero-tagline">"Establishing new standards in technical education with a futuristic approach — achieving holistic development of students, staff and organization."</p>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">15+</span><span class="stat-label">Years Experience</span></div>
+        <div class="stat"><span class="stat-num">26+</span><span class="stat-label">Journal Papers</span></div>
+        <div class="stat"><span class="stat-num">17+</span><span class="stat-label">Conferences</span></div>
+        <div class="stat"><span class="stat-num">3</span><span class="stat-label">PhD Awarded</span></div>
+      </div>
+      <div class="hero-btns">
+        <a href="#publications" class="btn-primary">View Publications</a>
+        <a href="#notes" class="btn-outline">📄 Course Notes</a>
+        <a href="#contact" class="btn-outline">Contact</a>
+      </div>
+    </div>
+    <div class="hero-photo-wrapper">
+      <div class="hero-photo-frame">
+        <div class="hero-avatar-placeholder">CG</div>
+      </div>
+      <div class="hero-contact-chips">
+        <a class="chip" href="mailto:cmgoswami358@gmail.com"><span class="chip-icon">📧</span>cmgoswami358@gmail.com</a>
+        <a class="chip" href="tel:+918983520531"><span class="chip-icon">📱</span>+91 8983520531</a>
+        <a class="chip" href="https://orcid.org/0000-0002-9404-9352" target="_blank"><span class="chip-icon">🔬</span>ORCID Profile</a>
+        <a class="chip" href="https://www.scopus.com/authid/detail.uri?authorId=57202433845" target="_blank"><span class="chip-icon">📊</span>Scopus Profile</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-tag">// 01 · About</span>
+      <h2 class="section-title">About <span class="accent">Me</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I am a Professor in the School of Computer Science & Applications at D Y Patil International University, Akurdi, Pune. With more than <strong>15 years of teaching and research experience</strong>, I have worked at premier institutions including KL University, Amity University, MIT ADT University, and Sir Padampat Singhania University.</p>
+        <p>I hold a <strong>Ph.D. in Computer Science & Engineering</strong> from VIT University Vellore, and a <strong>Post-Doctoral Fellowship</strong> from the National Kaohsiung University of Science and Technology, Taiwan, with research focused on Bio-Inspired algorithms for MANETs.</p>
+        <p>My academic journey is complemented by an <strong>MBA with Distinction</strong> and active leadership roles including Deputy Dean and NAAC/NBA Core Committee Member. I have guided <strong>3 Ph.D. scholars</strong> to successful award of their degrees.</p>
+        <div class="about-highlights">
+          <div class="highlight-card"><strong>Date of Birth</strong><span>25 June 1983</span></div>
+          <div class="highlight-card"><strong>Nationality</strong><span>Indian</span></div>
+          <div class="highlight-card"><strong>Languages</strong><span>English, Marathi, Hindi</span></div>
+          <div class="highlight-card"><strong>Marital Status</strong><span>Married</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="research-interests">
+          <h3>Research Interests</h3>
+          <div class="tags">
+            <span class="tag teal">Mobile Ad-Hoc Networks</span>
+            <span class="tag">Cross-Layer Optimization</span>
+            <span class="tag teal">IoT & Cybersecurity</span>
+            <span class="tag">Machine Learning</span>
+            <span class="tag gold">Deep Learning</span>
+            <span class="tag">Wireless Sensor Networks</span>
+            <span class="tag teal">5G Networks</span>
+            <span class="tag">Blockchain Technology</span>
+            <span class="tag">Bio-Inspired Algorithms</span>
+            <span class="tag gold">Cloud Computing</span>
+            <span class="tag">Data Mining</span>
+          </div>
+        </div>
+        <div class="ids-grid" style="margin-top:2rem">
+          <a class="id-link" href="https://orcid.org/0000-0002-9404-9352" target="_blank">🔗 ORCID: 0000-0002-9404-9352</a>
+          <a class="id-link" href="https://www.scopus.com/authid/detail.uri?authorId=57202433845" target="_blank">🔗 Scopus ID: 57202433845</a>
+        </div>
+        <div style="margin-top:2rem">
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--navy);margin-bottom:1rem">Subjects Taught</h3>
+          <div class="tags">
+            <span class="tag">DBMS</span>
+            <span class="tag">Data Structures</span>
+            <span class="tag">Operating Systems</span>
+            <span class="tag">Python</span>
+            <span class="tag">Cloud Computing</span>
+            <span class="tag">C++</span>
+            <span class="tag">OOA&D</span>
+            <span class="tag">Machine Learning</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-tag">// 02 · Education</span>
+      <h2 class="section-title">Academic <span class="accent">Qualifications</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="edu-timeline">
+      <div class="edu-item">
+        <div class="edu-dot gold"></div>
+        <div class="edu-degree">Post-Doctoral Fellowship (PDF)</div>
+        <div class="edu-institution">National Kaohsiung University of Science and Technology, Taiwan (R.O.C.)</div>
+        <div class="edu-year">December 2025 · Research Institute of IOT Cybersecurity</div>
+        <div class="edu-thesis">Bio-Inspired algorithms for mobility and power optimization in MANETs</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-dot gold"></div>
+        <div class="edu-degree">Doctor of Philosophy (Ph.D.) — Computer Science & Engineering</div>
+        <div class="edu-institution">VIT University, Vellore, Tamil Nadu</div>
+        <div class="edu-year">September 2021</div>
+        <div class="edu-thesis">Performance analysis of Cross-layer Optimization in Mobile Ad-Hoc Network</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-dot"></div>
+        <div class="edu-degree">Master of Business Administration (MBA)</div>
+        <div class="edu-institution">Yashwantrao Chavan Maharashtra Open University (YCMOU), Nashik</div>
+        <div class="edu-year">August 2021 · Distinction</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-dot"></div>
+        <div class="edu-degree">M.Tech — Computer Science & Engineering</div>
+        <div class="edu-institution">CSVTU Bhilai, Chhattisgarh</div>
+        <div class="edu-year">March 2014 · First Division</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-dot"></div>
+        <div class="edu-degree">B.E. — Information Technology</div>
+        <div class="edu-institution">RTM Nagpur University, Maharashtra</div>
+        <div class="edu-year">June 2009 · First Division</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-dot"></div>
+        <div class="edu-degree">H.S.C. (12th)</div>
+        <div class="edu-institution">Maharashtra State Board</div>
+        <div class="edu-year">June 2002 · First Division</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-dot"></div>
+        <div class="edu-degree">S.S.C. (10th)</div>
+        <div class="edu-institution">Maharashtra State Board</div>
+        <div class="edu-year">June 1999 · First Division</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-tag">// 03 · Experience</span>
+      <h2 class="section-title" style="color:var(--white)">Teaching & <span style="color:var(--teal-light)">Leadership</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="exp-grid">
+      <div class="exp-card current">
+        <span class="exp-badge">● Current</span>
+        <div class="exp-role">Professor</div>
+        <div class="exp-dept">School of Computer Science & Applications</div>
+        <div class="exp-org">D Y Patil International University, Akurdi, Pune</div>
+        <div class="exp-tenure">15 Dec 2025 – Present</div>
+      </div>
+      <div class="exp-card">
+        <span class="exp-badge past">Past</span>
+        <div class="exp-role">Deputy Dean | Associate Professor</div>
+        <div class="exp-dept">Faculty of Computing and Informatics</div>
+        <div class="exp-org">Sir Padampat Singhania University, Udaipur</div>
+        <div class="exp-tenure">Sep 2024 – Dec 2025 · 1 yr 3 mo</div>
+      </div>
+      <div class="exp-card">
+        <span class="exp-badge past">Past</span>
+        <div class="exp-role">Associate Professor</div>
+        <div class="exp-dept">Department of Computer Science Engineering</div>
+        <div class="exp-org">MIT ADT University, Pune</div>
+        <div class="exp-tenure">Aug 2023 – Sep 2024 · 1 yr 1 mo</div>
+      </div>
+      <div class="exp-card">
+        <span class="exp-badge past">Past</span>
+        <div class="exp-role">Associate Professor</div>
+        <div class="exp-dept">Department of Computer Science Engineering</div>
+        <div class="exp-org">Amity University, Gwalior</div>
+        <div class="exp-tenure">Dec 2022 – Aug 2023 · 9 mo</div>
+      </div>
+      <div class="exp-card">
+        <span class="exp-badge past">Past</span>
+        <div class="exp-role">Assistant Professor</div>
+        <div class="exp-dept">Department of Computer Science Engineering</div>
+        <div class="exp-org">KL University, Vijayawada</div>
+        <div class="exp-tenure">Jan 2014 – Dec 2022 · 8 years</div>
+      </div>
+      <div class="exp-card">
+        <span class="exp-badge past">Past</span>
+        <div class="exp-role">Lecturer</div>
+        <div class="exp-dept">Department of Computer Engineering</div>
+        <div class="exp-org">Avdoot Diploma College, Nagpur</div>
+        <div class="exp-tenure">Jul 2009 – May 2011 · 2 years</div>
+      </div>
+    </div>
+    <!-- Leadership -->
+    <div style="margin-top:3rem">
+      <h3 style="font-family:'Playfair Display',serif;color:rgba(255,255,255,0.8);font-size:1.2rem;margin-bottom:1.2rem">Leadership & Activities</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:0.8rem">
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:1rem;font-size:0.85rem;color:rgba(255,255,255,0.6)">📋 Editorial Board — Acta-Scientific Computer Sciences</div>
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:1rem;font-size:0.85rem;color:rgba(255,255,255,0.6)">🏛 NAAC Core Committee Member</div>
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:1rem;font-size:0.85rem;color:rgba(255,255,255,0.6)">🏛 NBA Core Committee Member</div>
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:1rem;font-size:0.85rem;color:rgba(255,255,255,0.6)">🎤 Conference Chair — Data Mining & Knowledge Discovery (2023)</div>
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:1rem;font-size:0.85rem;color:rgba(255,255,255,0.6)">🎤 Conference Chair — Emerging Computing Technologies (2022)</div>
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:1rem;font-size:0.85rem;color:rgba(255,255,255,0.6)">👨‍⚖️ Reviewer — IEEE IACC, Thapar University</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-tag">// 04 · Publications</span>
+      <h2 class="section-title">Research <span class="accent">Publications</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="pub-tabs">
+      <button class="pub-tab active" onclick="showTab('journals',this)">International Journals (26)</button>
+      <button class="pub-tab" onclick="showTab('conferences',this)">Conferences (17)</button>
+      <button class="pub-tab" onclick="showTab('chapters',this)">Book Chapters (7)</button>
+    </div>
+
+    <div id="journals" class="pub-list active">
+      <div class="pub-item"><div class="pub-num">#26 · 2025</div><div class="pub-title">Brajesh Kumar Sharma, Chandrashekhar Goswami, Prasun Chakrabarti — Explainable deep learning based adaptive malware detection framework to improve interpretability <span class="pub-badge badge-scopus">SCOPUS</span></div><div class="pub-meta">IJCESEN, Vol. 11-No.4, 2025 · DOI: 10.ijcesen.2025</div></div>
+      <div class="pub-item"><div class="pub-num">#25 · 2025</div><div class="pub-title">Brajesh Kumar Sharma, Chandrashekhar Goswami, Prasun Chakrabarti — Explainable Deep Learning Based Adaptive Malware Detection Framework <span class="pub-badge badge-scopus">SCOPUS</span></div><div class="pub-meta">Journal of Electrical Systems, Vol 21, Issue 1s, Nov 2025</div></div>
+      <div class="pub-item"><div class="pub-num">#24 · 2025</div><div class="pub-title">Vimla Dangi, Chandrashekhar Goswami, Prasun Chakrabarti — Developing a Conceptual Framework for Soil Property Analysis and Crop Yield Prediction Using ML <span class="pub-badge badge-scopus">SCOPUS</span></div><div class="pub-meta">IJITIS, Vol-8, Issue 3, 2025 · DOI: 10.15157/IJITIS.2025.8.3.513-536</div></div>
+      <div class="pub-item"><div class="pub-num">#23 · 2025</div><div class="pub-title">Pallavi Purohit, Chandrashekhar Goswami, Kamal Kant Hiran — Transformative AI Solutions: A hybrid Diagnostics model for Cardiovascular Disease</div><div class="pub-meta">JISEM, Vol. 45, Issue 10, Aug 2025</div></div>
+      <div class="pub-item"><div class="pub-num">#22 · 2025</div><div class="pub-title">Atul Haribhau Kachare, Chandrashekhar Goswami, et al. — FNet-GPT: Fourier-based lightweight transformer for emotion-aware text generation <span class="pub-badge badge-scopus">SCOPUS</span></div><div class="pub-meta">Future Technology, Vol. 04, Issue 04, Nov 2025 · IF: 5.9</div></div>
+      <div class="pub-item"><div class="pub-num">#21 · 2025</div><div class="pub-title">Pallavi Purohit, Chandrashekhar Goswami, Kamal Kant Hiran — Fusion of Hybrid AI and Dynamic Multi-Layered Feature Learning for Cardiovascular Disease Diagnosis</div><div class="pub-meta">JIIP, Vol. 7, Issue 2, Jun 2025</div></div>
+      <div class="pub-item"><div class="pub-num">#20 · 2025</div><div class="pub-title">Dhanabal S, Chandrashekhar Goswami, et al. — Shuffle-F-ZFNet: ShuffleNet Fuzzy Zeiler and Fergus Network for Data Aggregation in WSN <span class="pub-badge badge-scie">SCIE Q1</span></div><div class="pub-meta">Wireless Networks, Springer · IF: 2.9</div></div>
+      <div class="pub-item"><div class="pub-num">#19 · 2025</div><div class="pub-title">Chandrashekhar Goswami, Chin-Shiuh Shieh, Prasun Chakrabarti — Energy-aware power and rate control in MANETs using adaptive game theory and grey wolf optimization <span class="pub-badge badge-scopus">SCOPUS Q3</span></div><div class="pub-meta">Future Technology, Vol. 04, Issue 03, Jun 2025 · IF: 5.9</div></div>
+      <div class="pub-item"><div class="pub-num">#18 · 2024</div><div class="pub-title">Chandrashekhar Goswami, P. Tamil Selvi et al. — Photonic microstructured materials for power quality enhancement in smart grid inverters <span class="pub-badge badge-scie">SCIE Q2</span></div><div class="pub-meta">Optical and Quantum Electronics, Springer, May 2024 · IF: 3.0</div></div>
+      <div class="pub-item"><div class="pub-num">#17 · 2024</div><div class="pub-title">Chandrashekhar Goswami, Jyoti Upadhyay et al. — Novel Hybrid Deep Optimized ML Model for Energy Efficient Cluster Selection in UAV Networks <span class="pub-badge badge-scopus">SCOPUS</span></div><div class="pub-meta">Journal of Electrical Systems, Vol 20, Issue 1s, Apr 2024</div></div>
+      <div class="pub-item"><div class="pub-num">#11–16 · 2023</div><div class="pub-title">Six publications in Springer Nature journals: Deep CNN based Henry Gas Solubility Optimization (Soft Computing, SCIE Q2, IF:4.1), Blockchain Cross Chain Clinical Records (SCOPUS Q3, IF:8.9), Big Data 5G Network Slicing, Algorithms for 5G millimeter wave, Incentive-based HCI, Securing Healthcare IoT <span class="pub-badge badge-scie">SCIE Q2</span></div><div class="pub-meta">Springer Nature, Optical and Quantum Electronics / Soft Computing · 2023</div></div>
+      <div class="pub-item"><div class="pub-num">#1–10 · 2012–2022</div><div class="pub-title">Early career publications on MANETs, Energy Draining attacks in WSN, CRM Decision Trees, Cloud Data Security, Multicasting in MANET, Cross-Layer TCP, RSS-based Power Control, Congestion Control, IoT in Autonomous Vehicles <span class="pub-badge badge-scopus">SCOPUS</span></div><div class="pub-meta">IJRTE, IJAST, IJARCSSE, and others · 2012–2022</div></div>
+    </div>
+
+    <div id="conferences" class="pub-list">
+      <div class="pub-item"><div class="pub-num">#17 · Aug 2026 (Accepted)</div><div class="pub-title">Chandrashekhar Goswami, Sachin Patil, et al. — Beyond Data Silos: A Survey on Privacy-Preserving and Secure Federated Learning <span class="pub-badge badge-scopus">SCOPUS</span></div><div class="pub-meta">ICASSIC, KIIT-DU Campus, Bhubaneswar</div></div>
+      <div class="pub-item"><div class="pub-num">#16 · Aug 2026 (Accepted)</div><div class="pub-title">Chandrashekhar Goswami, Ansar Sheikh, et al. — ML and DL Approaches for Real-Time Anomaly Detection in IoT Systems <span class="pub-badge badge-scopus">SCOPUS</span></div><div class="pub-meta">ICASSIC, KIIT-DU Campus, Bhubaneswar</div></div>
+      <div class="pub-item"><div class="pub-num">#15 · Apr 2026 (Accepted)</div><div class="pub-title">Chandrashekhar Goswami, Rahul Sharma, et al. — AI-Enabled Air Quality Prediction for Smart Cities <span class="pub-badge badge-scopus">SCOPUS</span></div><div class="pub-meta">ICETSF, P. R. Pote Patil College of Engineering, Amravati</div></div>
+      <div class="pub-item"><div class="pub-num">#14 · Dec 2025</div><div class="pub-title">AA Duvey, Chandrashekhar Goswami, AK Goel — Trustless and Incentivized Federated Learning with Blockchain and zk-SNARKs <span class="pub-badge badge-scopus">SCOPUS</span></div><div class="pub-meta">IEMECON 2025 · DOI: 10.1109/IEMECON69302.2025.11365657</div></div>
+      <div class="pub-item"><div class="pub-num">#13 · Nov 2025</div><div class="pub-title">Vimla Dangi, Chandrashekhar Goswami, et al. — Assessment of Crop Yield Forecasting and Climate Change Effects Using ML in Agriculture <span class="pub-badge badge-scopus">SCOPUS</span></div><div class="pub-meta">ICETCE 2025 · DOI: 10.1109/ICETCE66848.2025.11388471</div></div>
+      <div class="pub-item"><div class="pub-num">#12 · May 2025</div><div class="pub-title">Chandrashekhar Goswami, Chin-Shiuh Shieh, et al. — From Nature to Computation: Bio-inspired Optimization Techniques and Applications <span class="pub-badge badge-scopus">SCOPUS</span></div><div class="pub-meta">ICETSF 2025 · DOI: 10.1051/epjconf/202532801004</div></div>
+      <div class="pub-item"><div class="pub-num">#9–11 · 2024–2025</div><div class="pub-title">Three IEEE conference papers: WSN Fault Detection via Blockchain Smart Grid, Blockchain Sharding Scalability, Diabetic Retinopathy by Transfer Learning <span class="pub-badge badge-scopus">SCOPUS</span></div><div class="pub-meta">IEEE ICBDS, ICCES, IEEE Xplore · 2024–2025</div></div>
+      <div class="pub-item"><div class="pub-num">#1–8 · 2017–2024</div><div class="pub-title">Publications at IEEE ICICI (WoS), ICIRCA, IC3I, ICACITE, ICSCNA, ICASC, ICASMT — covering TCP in wireless networks, 5G D2D communication, ML Trust Management in SIoT, ML Statistical Analysis, Ensemble Diabetes Prediction, AI for Fraud Detection <span class="pub-badge badge-wos">WoS</span><span class="pub-badge badge-scopus">SCOPUS</span></div><div class="pub-meta">IEEE Xplore Digital Library · 2017–2024</div></div>
+    </div>
+
+    <div id="chapters" class="pub-list">
+      <div class="pub-item"><div class="pub-num">Chapter 7 · Nov 2025</div><div class="pub-title">Chandrashekhar Goswami, Ansar Sheikh, Anand Bhaskar, Dipesh Vaya — Techniques for Detecting Hate Speech in AI and Human-Generated Content <span class="pub-badge badge-scopus">SCOPUS</span></div><div class="pub-meta">IGI Global Scientific Publishing · DOI: 10.4018/979-8-3373-3063-1.ch013</div></div>
+      <div class="pub-item"><div class="pub-num">Chapter 5–6 · Mar 2025</div><div class="pub-title">Two chapters: Data Reduction Techniques in WSN with IoT; Blockchain Technology to Protect Data Access Using ML <span class="pub-badge badge-scopus">SCOPUS</span></div><div class="pub-meta">Interdisciplinary Approaches to AI, IoE, and ML · IGI Global, 2025</div></div>
+      <div class="pub-item"><div class="pub-num">Chapter 4 · Mar 2024</div><div class="pub-title">Chandrashekhar Goswami, Amit Gaikwad, et al. — Study of Key Agreement Protocol Implementation in Constraint Environment <span class="pub-badge badge-scopus">SCOPUS</span></div><div class="pub-meta">Lecture Notes in Networks and Systems, Springer · DOI: 10.1007/978-981-99-9489-2_13</div></div>
+      <div class="pub-item"><div class="pub-num">Chapters 1–3 · Dec 2023</div><div class="pub-title">Three chapters with Muniyandy Elangovan & Puppala Ramya — Sustainable Energy TOPSIS, Green Building Fuzzy-MODM, Green Technology Planning Framework <span class="pub-badge badge-scopus">SCOPUS</span></div><div class="pub-meta">Decision-Making for Sustainable Technological Innovation, Wiley-Scrivener, 2023</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- NOTES -->
+<section id="notes">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-tag">// 05 · Resources</span>
+      <h2 class="section-title">Course <span class="accent">Notes & Materials</span></h2>
+      <div class="divider"></div>
+    </div>
+    <p class="notes-intro">PDF notes and study materials for students. New materials are uploaded regularly — check back for updates.</p>
+
+    <!-- Subject Group -->
+    <div class="subject-group">
+      <div class="subject-group-header">
+        <div class="subject-group-icon">🤖</div>
+        <div class="subject-group-info">
+          <div class="subject-group-label">Subject</div>
+          <div class="subject-group-name">Low-Code / No-Code Automation Development</div>
+        </div>
+        <div class="subject-group-count">5 Units</div>
+      </div>
+      <div class="notes-grid">
+        <a class="note-card" href="notes/LCNC-unit1.pdf" target="_blank">
+          <div class="note-icon">📄</div>
+          <div class="note-unit-badge">Unit 1</div>
+          <div class="note-subject">Introduction to Low-Code / No-Code</div>
+          <div class="note-desc">Foundations, platforms overview & visual development concepts</div>
+          <div class="note-link">⬇ Download PDF</div>
+        </a>
+        <a class="note-card" href="notes/LCNC-unit2.pdf" target="_blank">
+          <div class="note-icon">📄</div>
+          <div class="note-unit-badge">Unit 2</div>
+          <div class="note-subject">Workflow & Process Automation</div>
+          <div class="note-desc">Building automated workflows using drag-and-drop tools</div>
+          <div class="note-link">⬇ Download PDF</div>
+        </a>
+        <a class="note-card" href="notes/LCNC-unit3.pdf" target="_blank">
+          <div class="note-icon">📄</div>
+          <div class="note-unit-badge">Unit 3</div>
+          <div class="note-subject">App Development Platforms</div>
+          <div class="note-desc">Power Apps, Bubble, OutSystems and enterprise LCNC tools</div>
+          <div class="note-link">⬇ Download PDF</div>
+        </a>
+        <a class="note-card" href="notes/LCNC-unit4.pdf" target="_blank">
+          <div class="note-icon">📄</div>
+          <div class="note-unit-badge">Unit 4</div>
+          <div class="note-subject">Integration & APIs</div>
+          <div class="note-desc">Connecting services, REST APIs and data integration in LCNC</div>
+          <div class="note-link">⬇ Download PDF</div>
+        </a>
+        <a class="note-card" href="notes/LCNC-unit5.pdf" target="_blank">
+          <div class="note-icon">📄</div>
+          <div class="note-unit-badge">Unit 5</div>
+          <div class="note-subject">Advanced Topics & Case Studies</div>
+          <div class="note-desc">Security, scalability, real-world LCNC project case studies</div>
+          <div class="note-link">⬇ Download PDF</div>
+        </a>
+      </div>
+    </div>
+    <!-- Add more subject groups here following the same pattern -->
+  </div>
+</section>
+
+<!-- PATENTS -->
+<section id="patents">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-tag">// 06 · Patents & Books</span>
+      <h2 class="section-title">Patents <span class="accent">Published</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="patents-grid">
+      <div class="patent-card">
+        <div class="patent-title">Advanced Communication Router</div>
+        <div class="patent-meta">🇮🇳 India Patent · Published June 2021</div>
+      </div>
+      <div class="patent-card">
+        <div class="patent-title">Ethernet Switch</div>
+        <div class="patent-meta">🇮🇳 India Patent · Published June 2021</div>
+      </div>
+      <div class="patent-card">
+        <div class="patent-title">Automatic Recommendation System to Overcome Depression in Dysfunctional Behavior using Machine Learning</div>
+        <div class="patent-meta">🇮🇳 India Patent · Published March 2023</div>
+      </div>
+      <div class="patent-card">
+        <div class="patent-title">System for Remote Monitoring of High Risk Patients using Artificial Intelligence</div>
+        <div class="patent-meta">🇿🇦 South African Patent · Published March 2023</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKS -->
+<section id="books">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-tag">// 07 · Books</span>
+      <h2 class="section-title" style="color:var(--white)">Books <span style="color:var(--teal-light)">Authored</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="books-grid">
+      <div class="book-card">
+        <div class="book-spine">📚</div>
+        <div class="book-info">
+          <div class="book-type">Edited Book</div>
+          <div class="book-title">Detecting Hate Speech in Human and AI-Generated Content: Techniques, Bias Mitigation, and Ethical Considerations</div>
+          <div class="book-meta">IGI Global Scientific Publishing · Nov 2025 · SCOPUS Indexed<br>Co-editors: Arsalan, Jain, Mahrishi, Doshi</div>
+        </div>
+      </div>
+      <div class="book-card">
+        <div class="book-spine">📖</div>
+        <div class="book-info">
+          <div class="book-type">Text Book</div>
+          <div class="book-title">Database Management System</div>
+          <div class="book-meta">Publisher: Book Rivers<br>ISBN: 978-935-842-034-0</div>
+        </div>
+      </div>
+      <div class="book-card">
+        <div class="book-spine">📖</div>
+        <div class="book-info">
+          <div class="book-type">Text Book</div>
+          <div class="book-title">Machine Learning for Absolute Beginners</div>
+          <div class="book-meta">Publisher: Books Clinic Publishing<br>ISBN: 978-935-823-333-9</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-tag">// 08 · Contact</span>
+      <h2 class="section-title">Get in <span class="accent">Touch</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Contact Details</h3>
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div class="contact-detail">
+            <strong>Email</strong>
+            <a href="mailto:cmgoswami358@gmail.com">cmgoswami358@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📱</div>
+          <div class="contact-detail">
+            <strong>Mobile</strong>
+            <a href="tel:+918983520531">+91 8983520531</a> / <a href="tel:+919637764479">+91 9637764479</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🏛</div>
+          <div class="contact-detail">
+            <strong>Current Institution</strong>
+            <span>D Y Patil International University, Akurdi, Pune, Maharashtra</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🏠</div>
+          <div class="contact-detail">
+            <strong>Address</strong>
+            <span>Flat no. 104, P2 Wing, Uday Hilltop Residency, Mangal Kalash Road, Ravet, Pune 412101</span>
+          </div>
+        </div>
+      </div>
+      <div class="scholar-links">
+        <h3>Academic Profiles</h3>
+        <a class="scholar-card" href="https://orcid.org/0000-0002-9404-9352" target="_blank">
+          <div class="scholar-logo" style="background:#A6CE39">🔬</div>
+          <div><span>ORCID Profile</span><div style="font-size:0.75rem;color:var(--text-muted)">0000-0002-9404-9352</div></div>
+        </a>
+        <a class="scholar-card" href="https://www.scopus.com/authid/detail.uri?authorId=57202433845" target="_blank">
+          <div class="scholar-logo" style="background:#E9711C">📊</div>
+          <div><span>Scopus Profile</span><div style="font-size:0.75rem;color:var(--text-muted)">Author ID: 57202433845</div></div>
+        </a>
+        <a class="scholar-card" href="https://ipindiaservices.gov.in/PublicSearch/PublicationSearch/PatentDetails" target="_blank">
+          <div class="scholar-logo" style="background:var(--navy)">⚖️</div>
+          <div><span>India Patents</span><div style="font-size:0.75rem;color:var(--text-muted)">IP India Patent Office</div></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <strong>Dr. Chandrashekhar Goswami</strong> · Professor, Computer Science & Engineering · D Y Patil International University, Pune</p>
+  <p style="margin-top:0.5rem;font-size:0.75rem">cmgoswami358@gmail.com · +91 8983520531</p>
+</footer>
+
+<script>
+  function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  function showTab(id, el) {
+    document.querySelectorAll('.pub-list').forEach(l => l.classList.remove('active'));
+    document.querySelectorAll('.pub-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    el.classList.add('active');
+  }
+  // Smooth scroll for nav links, close mobile menu on click
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+</script>
+</body>
+</html>
