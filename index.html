@@ -309,30 +309,112 @@
   .badge-wos { background: #d4edda; color: #155724; }
 
   /* ── NOTES / RESOURCES ── */
-  #notes { background: var(--white); }
-  .notes-intro { color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem; }
-  .notes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.2rem; }
+  #notes { background: var(--navy); }
+  #notes .section-title { color: var(--white); }
+  #notes .section-tag { color: var(--teal-light); }
+  #notes .notes-intro { color: rgba(255,255,255,0.5); margin-bottom: 2.5rem; font-size: 0.95rem; }
+
+  /* Subject group container */
+  .subject-group {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+  .subject-group-header {
+    display: flex; align-items: center; gap: 1.2rem;
+    padding: 1.4rem 1.8rem;
+    background: linear-gradient(135deg, rgba(26,140,122,0.18) 0%, rgba(201,150,58,0.08) 100%);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .subject-group-icon {
+    width: 52px; height: 52px; border-radius: 12px; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--teal), var(--navy2));
+    border: 1px solid rgba(26,140,122,0.5);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+    box-shadow: 0 4px 20px rgba(26,140,122,0.3);
+  }
+  .subject-group-info { flex: 1; }
+  .subject-group-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--teal-light); margin-bottom: 0.3rem;
+  }
+  .subject-group-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem; color: var(--white); font-weight: 700; line-height: 1.3;
+  }
+  .subject-group-count {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem; color: var(--gold-light);
+    background: rgba(201,150,58,0.12);
+    border: 1px solid rgba(201,150,58,0.25);
+    border-radius: 20px; padding: 0.3rem 0.9rem;
+    white-space: nowrap; flex-shrink: 0;
+  }
+
+  /* Notes grid inside subject group */
+  .notes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1px;
+    background: rgba(255,255,255,0.05);
+    padding: 1.4rem;
+    gap: 1.2rem;
+  }
   .note-card {
-    background: var(--cream); border-radius: 10px; padding: 1.5rem;
-    border: 1px solid var(--cream2); display: flex; flex-direction: column;
-    align-items: flex-start; gap: 0.8rem; transition: transform 0.2s, box-shadow 0.2s;
-    text-decoration: none;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px; padding: 1.4rem;
+    display: flex; flex-direction: column;
+    align-items: flex-start; gap: 0.7rem;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s, background 0.2s;
+    text-decoration: none; position: relative; overflow: hidden;
   }
-  .note-card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+  .note-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--teal), var(--gold));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .note-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    border-color: rgba(26,140,122,0.35);
+    background: rgba(255,255,255,0.07);
+  }
+  .note-card:hover::before { transform: scaleX(1); }
   .note-icon {
-    width: 44px; height: 44px; border-radius: 8px;
-    background: var(--navy); display: flex; align-items: center; justify-content: center;
-    font-size: 1.3rem;
+    width: 42px; height: 42px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--teal) 0%, var(--navy2) 100%);
+    border: 1px solid rgba(26,140,122,0.4);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
   }
-  .note-subject { font-weight: 700; color: var(--navy); font-size: 0.95rem; }
-  .note-desc { color: var(--text-muted); font-size: 0.82rem; }
-  .note-link { color: var(--teal); font-size: 0.8rem; font-weight: 600; display: flex; align-items: center; gap: 0.4rem; }
+  .note-unit-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--gold-light);
+    background: rgba(201,150,58,0.1);
+    border: 1px solid rgba(201,150,58,0.2);
+    border-radius: 4px; padding: 0.15rem 0.5rem;
+  }
+  .note-subject { font-weight: 700; color: var(--white); font-size: 0.9rem; line-height: 1.4; }
+  .note-desc { color: rgba(255,255,255,0.45); font-size: 0.78rem; line-height: 1.5; flex: 1; }
+  .note-link {
+    color: var(--teal-light); font-size: 0.78rem; font-weight: 600;
+    display: flex; align-items: center; gap: 0.4rem;
+    margin-top: auto;
+  }
   .notes-placeholder {
-    background: var(--cream); border: 2px dashed var(--cream2);
-    border-radius: 10px; padding: 3rem; text-align: center; color: var(--text-muted);
+    background: rgba(255,255,255,0.03); border: 2px dashed rgba(255,255,255,0.1);
+    border-radius: 10px; padding: 3rem; text-align: center; color: rgba(255,255,255,0.3);
     font-size: 0.9rem;
   }
-  .notes-placeholder strong { display: block; color: var(--navy); font-size: 1rem; margin-bottom: 0.5rem; }
+  .notes-placeholder strong { display: block; color: rgba(255,255,255,0.6); font-size: 1rem; margin-bottom: 0.5rem; }
 
   /* ── PATENTS ── */
   #patents { background: var(--cream); }
@@ -421,12 +503,19 @@
     .about-highlights { grid-template-columns: 1fr; }
     .hero-label { margin: 0 auto 1.2rem; display: block; width: fit-content; }
   }
+  @media (max-width: 768px) {
+    .subject-group-header { flex-wrap: wrap; gap: 1rem; }
+    .subject-group-count { order: -1; }
+    .notes-grid { grid-template-columns: 1fr 1fr; }
+  }
   @media (max-width: 600px) {
     .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--navy); padding: 1.5rem 2rem; gap: 1rem; }
     .nav-links.open { display: flex; }
     .hamburger { display: flex; }
     .hero-photo-frame, .hero-avatar, .hero-avatar-placeholder { width: 200px; height: 200px; }
     .hero-photo-frame { width: 210px; height: 210px; }
+    .notes-grid { grid-template-columns: 1fr; }
+    .subject-group-name { font-size: 1rem; }
   }
 </style>
 </head>
@@ -499,7 +588,7 @@
         <p>I hold a <strong>Ph.D. in Computer Science & Engineering</strong> from VIT University Vellore, and a <strong>Post-Doctoral Fellowship</strong> from the National Kaohsiung University of Science and Technology, Taiwan, with research focused on Bio-Inspired algorithms for MANETs.</p>
         <p>My academic journey is complemented by an <strong>MBA with Distinction</strong> and active leadership roles including Deputy Dean and NAAC/NBA Core Committee Member. I have guided <strong>3 Ph.D. scholars</strong> to successful award of their degrees.</p>
         <div class="about-highlights">
-          <div class="highlight-card"><strong>Date of Birth</strong><span>25 June 1983</span></div>
+          <div class="highlight-card"><strong>Date of Birth</strong><span>25 June</span></div>
           <div class="highlight-card"><strong>Nationality</strong><span>Indian</span></div>
           <div class="highlight-card"><strong>Languages</strong><span>English, Marathi, Hindi</span></div>
           <div class="highlight-card"><strong>Marital Status</strong><span>Married</span></div>
@@ -589,13 +678,13 @@
         <div class="edu-dot"></div>
         <div class="edu-degree">H.S.C. (12th)</div>
         <div class="edu-institution">Maharashtra State Board</div>
-        <div class="edu-year">June 2002 · First Division</div>
+        <div class="edu-year"> First Division</div>
       </div>
       <div class="edu-item">
         <div class="edu-dot"></div>
         <div class="edu-degree">S.S.C. (10th)</div>
         <div class="edu-institution">Maharashtra State Board</div>
-        <div class="edu-year">June 1999 · First Division</div>
+        <div class="edu-year"> First Division</div>
       </div>
     </div>
   </div>
@@ -727,54 +816,55 @@
     </div>
     <p class="notes-intro">PDF notes and study materials for students. New materials are uploaded regularly — check back for updates.</p>
 
-    <!-- PLACEHOLDER — Replace cards below with real PDFs when ready -->
-    <!-- NOTES -->
-
-
-    <div class="notes-grid">
-      <a class="note-card" href="notes/LCNC-unit1.pdf" target="_blank"">
-        <div class="note-icon">📄</div>
-        <div class="note-subject">LCNC-unit1</div>
-        <div class="note-desc">Introduction to LCNC</div>
-        <div class="note-link">⬇ Download PDF →</div>
-      </a>
-      
-    <div class="notes-grid">
-      <a class="note-card" href="notes/LCNC-unit2.pdf" target="_blank"">
-        <div class="note-icon">📄</div>
-        <div class="note-subject">LCNC-unit2</div>
-        <div class="note-desc">Introduction to LCNC</div>
-        <div class="note-link">⬇ Download PDF →</div>
-      </a>
-
-    <div class="notes-grid">
-      <a class="note-card" href="notes/LCNC-unit3.pdf" target="_blank"">
-        <div class="note-icon">📄</div>
-        <div class="note-subject">LCNC-unit3</div>
-        <div class="note-desc">Introduction to LCNC</div>
-        <div class="note-link">⬇ Download PDF →</div>
-      </a>
-      
-    <div class="notes-grid">
-      <a class="note-card" href="notes/LCNC-unit4.pdf" target="_blank"">
-        <div class="note-icon">📄</div>
-        <div class="note-subject">LCNC-unit4</div>
-        <div class="note-desc">Introduction to LCNC</div>
-        <div class="note-link">⬇ Download PDF →</div>
-      </a>
-
-    <div class="notes-grid">
-      <a class="note-card" href="notes/LCNC-unit5.pdf" target="_blank"">
-        <div class="note-icon">📄</div>
-        <div class="note-subject">LCNC-unit5</div>
-        <div class="note-desc">Introduction to LCNC</div>
-        <div class="note-link">⬇ Download PDF →</div>
-      </a>   
-            
-      <!-- Add more cards here following the same pattern -->
+    <!-- Subject Group -->
+    <div class="subject-group">
+      <div class="subject-group-header">
+        <div class="subject-group-icon">🤖</div>
+        <div class="subject-group-info">
+          <div class="subject-group-label">Subject</div>
+          <div class="subject-group-name">Low-Code / No-Code Automation Development</div>
+        </div>
+        <div class="subject-group-count">5 Units</div>
+      </div>
+      <div class="notes-grid">
+        <a class="note-card" href="notes/LCNC-unit1.pdf" target="_blank">
+          <div class="note-icon">📄</div>
+          <div class="note-unit-badge">Unit 1</div>
+          <div class="note-subject">Introduction to Low-Code / No-Code</div>
+          <div class="note-desc">Foundations, platforms overview & visual development concepts</div>
+          <div class="note-link">⬇ Download PDF</div>
+        </a>
+        <a class="note-card" href="notes/LCNC-unit2.pdf" target="_blank">
+          <div class="note-icon">📄</div>
+          <div class="note-unit-badge">Unit 2</div>
+          <div class="note-subject">Workflow & Process Automation</div>
+          <div class="note-desc">Building automated workflows using drag-and-drop tools</div>
+          <div class="note-link">⬇ Download PDF</div>
+        </a>
+        <a class="note-card" href="notes/LCNC-unit3.pdf" target="_blank">
+          <div class="note-icon">📄</div>
+          <div class="note-unit-badge">Unit 3</div>
+          <div class="note-subject">App Development Platforms</div>
+          <div class="note-desc">Power Apps, Bubble, OutSystems and enterprise LCNC tools</div>
+          <div class="note-link">⬇ Download PDF</div>
+        </a>
+        <a class="note-card" href="notes/LCNC-unit4.pdf" target="_blank">
+          <div class="note-icon">📄</div>
+          <div class="note-unit-badge">Unit 4</div>
+          <div class="note-subject">Integration & APIs</div>
+          <div class="note-desc">Connecting services, REST APIs and data integration in LCNC</div>
+          <div class="note-link">⬇ Download PDF</div>
+        </a>
+        <a class="note-card" href="notes/LCNC-unit5.pdf" target="_blank">
+          <div class="note-icon">📄</div>
+          <div class="note-unit-badge">Unit 5</div>
+          <div class="note-subject">Advanced Topics & Case Studies</div>
+          <div class="note-desc">Security, scalability, real-world LCNC project case studies</div>
+          <div class="note-link">⬇ Download PDF</div>
+        </a>
+      </div>
     </div>
-  </div>
-</section>
+    <!-- Add more subject groups here following the same pattern -->
   </div>
 </section>
 
@@ -866,7 +956,7 @@
           <div class="contact-icon">📱</div>
           <div class="contact-detail">
             <strong>Mobile</strong>
-            <a href="tel:+918983520531">+91 8983520531</a> / <a href="tel:+919637764479">+91 9637764479</a>
+            <a href="tel:+918983520531">+91 8983520531</a> 
           </div>
         </div>
         <div class="contact-item">
@@ -880,7 +970,7 @@
           <div class="contact-icon">🏠</div>
           <div class="contact-detail">
             <strong>Address</strong>
-            <span>Flat no. 104, P2 Wing, Uday Hilltop Residency, Mangal Kalash Road, Ravet, Pune 412101</span>
+            <span> Ravet, Pune 412101</span>
           </div>
         </div>
       </div>
